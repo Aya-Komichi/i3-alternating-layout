@@ -54,8 +54,8 @@ def print_help():
 def main():
     """
     Main function - listen for window focus
-        changes and call set_layout when focus
-        changes
+        changes and window movements,
+        call set_layout when applicable
     """
     opt_list, _ = getopt.getopt(sys.argv[1:], 'hp:')
     pid_file = None
@@ -72,6 +72,7 @@ def main():
 
     i3 = Connection()
     i3.on(Event.WINDOW_FOCUS, set_layout)
+    i3.on(Event.WINDOW_MOVE, set_layout)
     i3.main()
 
 
